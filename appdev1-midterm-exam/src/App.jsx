@@ -1,6 +1,15 @@
+import { useState } from "react";
+
 function App() {
+  const [toggleModal, setToggleModal] = useState(false);
+
+  function handleToggleModal() {
+    setToggleModal(!toggleModal);
+  }
+
   return (
     <>
+
     <header
     className="header-area header-sticky wow slideInDown"
     data-wow-duration="0.75s"
@@ -12,7 +21,7 @@ function App() {
           <nav className="main-nav">
             {/* ***** Logo Start ***** */}
             <a href="index.html" className="logo">
-              <img src="assets/images/logo.png" alt="Chain App Dev" />
+              <img src="./public/assets/images/logo.png" alt="Chain App Dev" />
             </a>
             {/* ***** Logo End ***** */}
             {/* ***** Menu Start ***** */}
@@ -36,7 +45,7 @@ function App() {
               </li>
               <li>
                 <div className="gradient-button">
-                  <a id="modal_trigger" href="#modal">
+                  <a id="modal_trigger" href="#modal" onClick={handleToggleModal}>
                     <i className="fa fa-sign-in-alt" /> Sign In Now
                   </a>
                 </div>
@@ -52,10 +61,28 @@ function App() {
     </div>
   </header>
   {/* ***** Header Area End ***** */}
-  <div id="modal" className="popupContainer" style={{ display: "none" }}>
+  <div
+  id="modal"
+  className="popupContainer"
+  style={
+    toggleModal
+      ? {
+          display: "block",
+          position: "fixed",
+          opacity: 1,
+          zIndex: 11000,
+          left: "50%",
+          marginLeft: "-165px",
+          top: 100,
+        }
+      : {
+          display: "none",
+        }
+  }
+>
     <div className="popupHeader">
       <span className="header_title">Login</span>
-      <span className="modal_close">
+      <span className="modal_close" onClick={handleToggleModal}>
         <i className="fa fa-times" />
       </span>
     </div>
@@ -202,7 +229,7 @@ function App() {
                 data-wow-duration="1s"
                 data-wow-delay="0.5s"
               >
-                <img src="assets/images/slider-dec.png" alt="" />
+                <img src="./public/assets/images/slider-dec.png" alt="" />
               </div>
             </div>
           </div>
@@ -222,7 +249,7 @@ function App() {
             <h4>
               Amazing <em>Services &amp; Features</em> for you
             </h4>
-            <img src="assets/images/heading-line-dec.png" alt="" />
+            <img src="./public/assets/images/heading-line-dec.png" alt="" />
             <p>
               If you need the greatest collection of HTML templates for your
               business, please visit{" "}
@@ -386,7 +413,7 @@ function App() {
             <h4>
               Check What <em>The Clients Say</em> About Our App Dev
             </h4>
-            <img src="assets/images/heading-line-dec.png" alt="" />
+            <img src="./public/assets/images/heading-line-dec.png" alt="" />
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eismod tempor incididunt ut labore et dolore magna.
@@ -896,5 +923,6 @@ function App() {
 </>
  )  
 }
+
 
 export default App
